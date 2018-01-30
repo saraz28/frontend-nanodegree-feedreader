@@ -26,43 +26,34 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
-         */
+        
+        //loops through each feed to make sure it has URL and not empty
         it('Url defined and not empty', function() {
-            var feeds = allFeeds.length;
-            for (var i = 0; i < feeds; i++) {
-                expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url.length).not.toBe(0);
-            }
+            allFeeds.forEach(function(feed){
+                expect(feed.url).toBeDefined();
+                expect(feed.url).toBeTruthy();
+            
         });
+            });
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
 
+       
+        //loops through each feed to make sure it has name and not empty
         it('Name defined and not empty', function() {
-            var feeds = allFeeds.length;
-            for (var i = 0; i < feeds; i++) {
-                expect(allFeeds[i].name).toBeDefined();
-                expect(allFeeds[i].name).not.toBe("");
+            allFeeds.forEach(function(feed){
+                expect(feed.name).toBeDefined();
+                expect(feed.name).not.toBe("");
 
-            }
+            });
         });
 
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
-
-    /* TODO: Write a test that ensures the menu element is
-     * hidden by default. You'll have to analyze the HTML and
-     * the CSS to determine how we're performing the
-     * hiding/showing of the menu element.
-     */
+   
+    
+    //Test named "the menu" that ensures it's element is hidden
     describe('The menu', function() {
 
         it('Ensures Menu element is hidden', function() {
@@ -70,12 +61,10 @@ $(function() {
 
         });
 
-        /* TODO: Write a test that ensures the menu changes
-         * visibility when the menu icon is clicked. This test
-         * should have two expectations: does the menu display when
-         * clicked and does it hide when clicked again.
-         */
-
+       
+         /*Ensures the menu changes visibility when menu icon is clicked 
+         *and tests if the menu displays when clicked 
+         *and it hides when clicked again*/
         it('Ensures the menu changes visibility', function() {
             var menu = $('.menu-icon-link');
             menu.trigger('click');
@@ -87,35 +76,24 @@ $(function() {
     });
 
 
-    /* TODO: Write a new test suite named "Initial Entries" */
-
-    /* TODO: Write a test that ensures when the loadFeed
-     * function is called and completes its work, there is at least
-     * a single .entry element within the .feed container.
-     * Remember, loadFeed() is asynchronous so this test will require
-     * the use of Jasmine's beforeEach and asynchronous done() function.
-     */
-
+    
+     /*Test named "Initial Entries" and ensures when the loadFeed
+     *function is called and completes its work */
     describe('Initial Entries', function() {
         beforeEach(function(done) {
             var id = 0;
             loadFeed(id, done);
         });
-
+        
+        //Test to ensure there is at least a single entry within feed
         it('single entry element within the feed', function(done) {
-            expect($('body').hasClass('.entry').length > $('body').hasClass('.feed').length).not.toBe(0);
+            expect($('.entry').length).not.toBe(0);
             done();
         });
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
-
-    /* TODO: Write a test that ensures when a new feed is loaded
-     * by the loadFeed function that the content actually changes.
-     * Remember, loadFeed() is asynchronous.
-     */
-
-
+    /*Test named "New Feed Selection" ensures when a new feed
+    *is loaded by the loadFeed function and content changes */
     describe('New Feed Selection', function() {
         var currentfeed;
         var newfeed;
@@ -124,11 +102,10 @@ $(function() {
             var id = 0;
             loadFeed(id, function() {
                 currentfeed = $('.feed').html();
-                done();
                 //The Second new Feed
                 var id = 1;
                 loadFeed(id, function() {
-                    newFeed = $('.feed').html();
+                    newfeed = $('.feed').html();
                     done();
                 });
             });
