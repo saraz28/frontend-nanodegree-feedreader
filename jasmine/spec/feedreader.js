@@ -57,7 +57,7 @@ $(function() {
     describe('The menu', function() {
 
         it('Ensures Menu element is hidden', function() {
-            expect($('body').hasClass('menu-hidden')).toBe(true);
+            expect($('body').hasClass('menu-hidden')).toBeTruthy();
 
         });
 
@@ -68,9 +68,9 @@ $(function() {
         it('Ensures the menu changes visibility', function() {
             var menu = $('.menu-icon-link');
             menu.trigger('click');
-            expect($('body').hasClass('menu-hidden')).toBe(false);
+            expect($('body').hasClass('menu-hidden')).toBeFalsy();
             menu.trigger('click');
-            expect($('body').hasClass('menu-hidden')).toBe(true);
+            expect($('body').hasClass('menu-hidden')).toBeTruthy();
         });
 
     });
@@ -87,7 +87,8 @@ $(function() {
         
         //Test to ensure there is at least a single entry within feed
         it('single entry element within the feed', function(done) {
-            expect($('.entry').length).not.toBe(0);
+            var singleEntry = document.querySelectorAll('.feed .entry ');
+            expect($(singleEntry).length).not.toBe(0);
             done();
         });
     });
